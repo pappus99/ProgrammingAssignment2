@@ -1,16 +1,31 @@
-## Put comments here that give an overall description of what your
-## functions do
+## The following functions check if there is cached result for inverse of the matrix. If yes, then the    
+## previously cached inverse is printed. If the inverse is not cached, then the inverse is calculated and cached.
 
-## Write a short comment describing this function
+## Takes matrix as an input and can cache inverse of the same matrix 
 
 makeCacheMatrix <- function(x = matrix()) {
-
+  
+  inv = NULL
+  set = function(y) {
+    x <<- y
+    inv <<- NULL
+  }
+  get = function() x
+  setinv = function(inverse) inv <<- inverse 
+  getinv = function() inv
+  list(set=set, get=get, setinv=setinv, getinv=getinv)
 }
 
+## Solves cache of a matrix if it cannot get it from makeCacheMatrix
 
-## Write a short comment describing this function
-
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+cacheSolve <- function(x) {
+  inv = x$getinv()
+  if (!is.null(inv)){
+    message("getting cached data")
+    return(inv)
+  }
+  data = x$get()
+  inv = solve(data)
+  x$setinv(inv)
+  return(inv)
 }
-

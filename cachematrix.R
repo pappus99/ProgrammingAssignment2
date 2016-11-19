@@ -14,8 +14,3 @@ cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
 }
 
-<<<<<<< HEAD
-##Test, test, test1
-=======
-## whot whot
->>>>>>> origin/master
